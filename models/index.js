@@ -15,13 +15,12 @@ const Page = db.define('pages', {
 	slug:{
 		type: Sequelize.STRING,
 		allowNull: false
-
-	}, 
+	},
 	content:{
 		type: Sequelize.TEXT,
 		allowNull: false
 
-	}, 
+	},
 	status: Sequelize.BOOLEAN
 })
 
@@ -30,9 +29,9 @@ const User = db.define('users', {
 		type: Sequelize.STRING,
 		allowNull: false
 
-	}, 
-	email: { 
-		type:Sequelize.STRING,
+	},
+	email: {
+		type: Sequelize.STRING,
 		allowNull: false,
 		validate: {
 			isEmail: true
@@ -43,6 +42,6 @@ const User = db.define('users', {
 
 
 module.exports = {
-  db
+  db, Page, User
 }
 

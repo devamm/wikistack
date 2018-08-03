@@ -7,6 +7,7 @@ const user = require('./routes/user');
 const app = express();
 
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
 app.use('/wiki', wiki);
 app.use('/user', user);
 
