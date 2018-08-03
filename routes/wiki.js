@@ -46,16 +46,30 @@ router.post('/', async (req, res, next) => {
     slug: slugged
   })
 
-  console.log(pages);
+  //console.log(pages);
 
   try {
     await pages.save();
-    res.redirect('/')
+    res.redirect('/wiki/'+slugged);
   } catch (err) {
       next(err);
   }
 })
 
+
+router.get('/:slug',  async (req, res, next) =>{
+	let slug = req.params.slug;
+	console.log(slug);
+
+	const foundPage = await Page.findOne({
+		where: {slug: slug}
+	});
+
+
+
+
+	res.send(index.wikiPage(foundPage, null ));
+})
 
 
 module.exports = router;
