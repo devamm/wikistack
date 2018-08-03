@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const index = require('./views/index');
-const db = require('./models/index');
+const { db } = require('./models/index');
 const wiki = require('./routes/wiki');
 const user = require('./routes/user');
 const app = express();
@@ -22,7 +22,7 @@ const syncFunc = async () => {
 	try{
 		await db.sync({force: true});
 	} catch (err){
-		console.log('something broke');
+		console.log('something broke', err);
 	}
 
 	app.listen(PORT, () => {

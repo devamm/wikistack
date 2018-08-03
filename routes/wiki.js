@@ -21,19 +21,36 @@ router.get('/add', (req, res, next) => {
   res.send(index.addPage());
 })
 
+function makeSlug(title) {
+  //convert title into slug
+  let slug = "";
+
+  if(title) {
+    slug = title.slice();
+    slug = slug.replace(/\s/g, "_");
+  } else {
+    slug = Math.floor((Math.random() * (9999 - 1000) + 1000)).toString();
+  }
+
+  return slug;
+}
+
 router.post('/', async (req, res, next) => {
   const {name, email, title, content, status} = req.body;
-  console.log("page is", Page)
+  let slugged = makeSlug(title);
 
-  const page = new Page({
+  const pages = new Page({
     title: title,
     content: content,
-    status: status
+    status: status,
+    slug: slugged
   })
 
+  console.log(pages);
+
   try {
-    await page.save();
-    res.redirect("/")
+    await pages.save();
+    res.redirect('/')
   } catch (err) {
       next(err);
   }

@@ -4,7 +4,7 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {logging: false}
 
 db.authenticate().
 then(() => {
-  console.log('connected to the database');
+  console.log('we got to the database');
 })
 
 const Page = db.define('pages', {
@@ -21,7 +21,7 @@ const Page = db.define('pages', {
 		allowNull: false
 
 	},
-	status: Sequelize.BOOLEAN
+	status: Sequelize.STRING
 })
 
 const User = db.define('users', {
